@@ -1,0 +1,21 @@
+{
+    "name": "dsec_standard_train",
+    "cuda": true,
+    "gpu": 0,
+    "subtype": "standard",
+    "save_dir": "saved",
+    "data_loader": {
+        "train": {
+            "args": {
+                "batch_size": 1,
+                "shuffle": false,
+                "sequence_length": 1,
+                "num_voxel_bins": 15,
+                "type" : "train",
+                "transforms" : [
+                    "EventSequenceToVoxelGrid_Pytorch(num_bins=15, normalize=True, gpu=True)"
+                ]
+            }
+        }
+    }
+}

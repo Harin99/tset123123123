@@ -1,0 +1,36 @@
+{
+    "name": "indoor_flying_test",
+    "cuda": true,
+    "gpu": 1,
+    "subtype": "warm_start",
+    "save_dir": "saved",
+    "data_loader": {
+        "test": {
+            "args": {
+                "batch_size": 1,
+                "shuffle": false,
+                "sequence_length": 1,
+                "num_voxel_bins": 15,
+                "align_to": "flow",
+                "type" : "test",
+                "datasets": {
+                    "indoor_flying": [
+                        1
+                    ]
+                },
+                "filter": {
+                    "indoor_flying": {
+                        "1": "range(1001, 1350)"
+                    }
+                },
+                "transforms": [
+                    "EventSequenceToVoxelGrid_Pytorch(num_bins=15, normalize=True, gpu=True)",
+                    "RandomCropping(crop_height=256, crop_width=256, fixed=True)"
+                ]
+            }
+        }
+    },
+    "test": {
+        "checkpoint": "checkpoints/EPE_eraft_11-05-13:26.pth"
+    }
+}

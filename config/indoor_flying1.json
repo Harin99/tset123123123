@@ -1,0 +1,34 @@
+{
+    "name": "indoor_flying1_Original",
+    "cuda": true,
+    "gpu": 0,
+    "subtype": "warm_start",
+    "save_dir": "saved",
+    "data_loader": {
+        "train": {
+            "args": {
+                "batch_size": 3,
+                "shuffle": false,
+                "sequence_length": 2,
+                "num_voxel_bins": 15,
+                "align_to": "flow",
+                "type" : "train",
+                "datasets": {
+                    "indoor_flying": [
+                        1
+                    ]
+                },
+                "filter": {
+                    "indoor_flying": {
+                        "1": "range(50, 1000)"
+                    }
+                },
+                "transforms": [
+                    "EventSequenceToVoxelGrid_Pytorch(num_bins=15, normalize=True, gpu=True)",
+                    "RandomCropping(crop_height=256, crop_width=256, fixed=True)"
+                ]
+            }
+        }
+    }
+}
+

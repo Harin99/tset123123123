@@ -1,0 +1,24 @@
+{
+    "name": "dsec_warn_start_train",
+    "cuda": true,
+    "gpu": 0,
+    "subtype": "warm_start",
+    "save_dir": "saved",
+    "data_loader": {
+        "train": {
+            "args": {
+                "batch_size": 3,
+                "shuffle": false,
+                "sequence_length": 3,
+                "num_voxel_bins": 15,
+                "type" : "train",
+                "transforms" : [
+                    "EventSequenceToVoxelGrid_Pytorch(num_bins=15, normalize=True, gpu=True)",
+                    "RandomCropping(crop_height=288, crop_width=384, fixed=True)", 
+                    "RandomHorizontalFlip(p=0.5)", 
+                    "RandomVerticalFlip(p=0.1)"
+                ]
+            }
+        }
+    }
+}
